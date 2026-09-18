@@ -1,0 +1,340 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #020006;
+    color: white;
+    font-family: Georgia, "Times New Roman", serif;
+    position: relative;
+}
+
+canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background:
+        radial-gradient(
+            circle at center,
+            #16000f 0%,
+            #050007 45%,
+            #000 100%
+        );
+}
+
+
+/* -------------------------
+   TOP BUTTONS
+------------------------- */
+
+.top-controls {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+
+    display: flex;
+    gap: 8px;
+
+    z-index: 20;
+}
+
+.control-btn {
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid rgba(255, 80, 150, 0.35);
+    border-radius: 50%;
+
+    background: rgba(30, 0, 25, 0.65);
+
+    color: #ff9abd;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 0 15px rgba(255, 30, 100, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+
+    box-shadow:
+        0 0 20px rgba(255, 30, 120, 0.5);
+}
+
+
+/* -------------------------
+   START SCREEN
+------------------------- */
+
+.start-screen {
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+
+    text-align: center;
+
+    z-index: 10;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.start-screen.hide {
+    opacity: 0;
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -55%)
+        scale(1.05);
+}
+
+
+/* HEART */
+
+.start-heart {
+    font-family: Arial, sans-serif;
+
+    font-size: 58px;
+
+    color: #ff3c81;
+
+    text-shadow:
+        0 0 10px #ff216c,
+        0 0 25px #ff216c,
+        0 0 50px rgba(255, 30, 110, 0.8);
+
+    animation:
+        heartBeat 1.5s infinite ease-in-out;
+}
+
+
+/* TITLE */
+
+.start-screen h1 {
+    margin-top: 12px;
+
+    font-size: clamp(42px, 7vw, 82px);
+
+    font-weight: normal;
+
+    font-style: italic;
+
+    letter-spacing: -2px;
+
+    text-shadow:
+        0 0 10px rgba(255, 50, 130, 0.45);
+}
+
+.start-screen h1 span:first-child {
+    color: #fff;
+}
+
+.start-screen h1 span:last-child {
+    color: #ff638f;
+}
+
+
+/* START BUTTON */
+
+.start-btn {
+    margin-top: 20px;
+
+    padding: 12px 28px;
+
+    border-radius: 30px;
+
+    border: 1px solid rgba(255, 70, 140, 0.55);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 50, 120, 0.2),
+            rgba(40, 0, 30, 0.65)
+        );
+
+    color: #fff;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px rgba(255, 30, 110, 0.25),
+        inset 0 0 15px rgba(255, 30, 110, 0.08);
+
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+}
+
+.start-btn:hover {
+    transform: scale(1.04);
+
+    box-shadow:
+        0 0 30px rgba(255, 30, 110, 0.5);
+}
+
+.start-screen p {
+    margin-top: 14px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    color: rgba(255, 180, 205, 0.55);
+
+    letter-spacing: 0.3px;
+}
+
+
+/* -------------------------
+   MAIN CONTENT
+------------------------- */
+
+.main-content {
+    position: fixed;
+
+    left: 50%;
+    bottom: 35px;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    text-align: center;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transition: opacity 1.2s ease;
+}
+
+.main-content.show {
+    opacity: 1;
+}
+
+
+/* QUOTE */
+
+.quote-box {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 8px 18px;
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255, 70, 140, 0.35);
+
+    background:
+        rgba(35, 0, 25, 0.6);
+
+    box-shadow:
+        0 0 20px rgba(255, 30, 110, 0.2);
+
+    backdrop-filter: blur(8px);
+}
+
+.quote-box p {
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    color: #ffd3df;
+
+    letter-spacing: 0.3px;
+}
+
+.quote-sparkle {
+    font-size: 12px;
+}
+
+
+/* BOTTOM TEXT */
+
+.bottom-text {
+    margin-top: 9px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    color: rgba(255, 190, 210, 0.5);
+}
+
+
+/* -------------------------
+   ANIMATION
+------------------------- */
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.13);
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .top-controls {
+        top: 10px;
+        right: 10px;
+    }
+
+    .control-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .quote-box {
+        max-width: 90%;
+    }
+
+    .quote-box p {
+        font-size: 10px;
+    }
+
+    .bottom-text {
+        font-size: 8px;
+    }
+}
